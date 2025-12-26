@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  logger:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+psycopg://logger:secret@db:5432/logger_db
+      - SERVICE_NAME=central-logger
+      - ENVIRONMENT=development
+      - API_KEY_HEADER=X-API-Key
+      - API_KEYS={"test_key_123":"client_1"}
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_DB=logger_db
+      - POSTGRES_USER=logger
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

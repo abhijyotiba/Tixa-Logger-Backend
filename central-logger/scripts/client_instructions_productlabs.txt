@@ -1,0 +1,21 @@
+Logger API Credentials
+Generated: 2025-12-24T17:29:22.619791
+======================================================================
+
+Client ID:   productlabs
+Client Name: Abhishek
+
+Endpoint:    https://your-logger-api.com/api/v1/logs
+API Key:     0CXp-UvBsS3IKQICPBQSg0kIb-8IKqykg1XsEFUtVEQ
+Header Name: X-API-Key
+
+Setup Instructions:
+1. Add to your .env file:
+   LOGGER_API_URL=https://your-logger-api.com/api/v1/logs
+   LOGGER_API_KEY=0CXp-UvBsS3IKQICPBQSg0kIb-8IKqykg1XsEFUtVEQ
+
+2. Never commit .env to version control
+
+3. Use in your code:
+   headers = {'X-API-Key': os.getenv('LOGGER_API_KEY')}
+   requests.post(url, headers=headers, json=log_data)
