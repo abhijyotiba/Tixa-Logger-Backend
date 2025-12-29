@@ -1,0 +1,32 @@
+# Render Deployment Configuration for Central Logger
+
+# This file tells Render how to build and run your FastAPI app.
+
+# 1. Environment Variables
+#    Set these in the Render dashboard (not in this file):
+#    - DATABASE_URL
+#    - SERVICE_NAME
+#    - ENVIRONMENT
+#    - API_KEY_HEADER
+#    - API_KEYS
+#    - ALLOWED_ORIGINS
+#    - DEFAULT_PAGE_SIZE
+#    - MAX_PAGE_SIZE
+
+# 2. Build Command
+pip install --no-cache-dir -r requirements.txt
+
+# 3. Start Command
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+# 4. Health Check Path
+/health
+
+# 5. Exposed Port
+8000
+
+# 6. Notes
+# - Make sure your PostgreSQL database is accessible from Render.
+# - Set CORS origins appropriately for your frontend.
+# - Do not commit secrets or .env files to your repo.
+# - For production, set ENVIRONMENT=production and restrict ALLOWED_ORIGINS.

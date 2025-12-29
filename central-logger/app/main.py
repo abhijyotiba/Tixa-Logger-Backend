@@ -44,6 +44,16 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"detail": "Internal server error"}
     )
 
+
+# Root endpoint
+@app.get("/")
+async def root():
+    return {
+        "message": "Welcome to Central Logger API!",
+        "docs": "/docs" if settings.ENVIRONMENT != "production" else None,
+        "health": "/health"
+    }
+
 # Health check
 @app.get("/health")
 async def health_check():
